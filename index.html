@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Teal Counters</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="apple-touch-icon" href="https://placehold.co/192x192/1abc9c/ffffff?text=TC"> 
+</head>
+<body>
+    <header class="app-header">
+        <div class="top-bar">
+            <h1>Teal Counters</h1>
+            <div class="controls">
+                <button class="icon-btn" id="view-toggle-btn">View: All</button>
+                <button class="icon-btn" id="edit-mode-btn">Edit</button>
+                <button id="add-btn" aria-label="Add Counter" style="font-size: 24px; font-weight: bold;">+</button>
+            </div>
+        </div>
+        <div class="segmented-control" id="group-tabs">
+            <!-- Tabs injected by JS -->
+        </div>
+    </header>
+
+    <main id="counter-list">
+        <!-- Counters go here -->
+        <div style="text-align: center; color: #999; margin-top: 50px;">Loading...</div>
+    </main>
+
+    <!-- Modals -->
+    <div id="group-modal" class="modal-overlay">
+        <div class="modal">
+            <h2 id="group-modal-title">New Group</h2>
+            <div class="form-group">
+                <label>Group Name</label>
+                <input type="text" id="group-name-input" placeholder="e.g. Work">
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeModal('group-modal')">Cancel</button>
+                <button class="btn btn-primary" id="save-group-btn">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="counter-modal" class="modal-overlay">
+        <div class="modal">
+            <h2>Edit Counter</h2>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" id="counter-name-input">
+            </div>
+            <div class="form-group">
+                <label>Group</label>
+                <select id="counter-group-select"></select>
+            </div>
+            <div class="modal-actions" style="justify-content: space-between;">
+                <button class="btn btn-danger" id="delete-counter-btn">Delete</button>
+                <div style="display:flex; gap:10px;">
+                    <button class="btn btn-secondary" onclick="closeModal('counter-modal')">Cancel</button>
+                    <button class="btn btn-primary" id="save-counter-btn">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</body>
+</html>
